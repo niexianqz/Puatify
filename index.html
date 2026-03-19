@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบประชาสัมพันธ์โรงเรียน</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-5">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6 text-center">ข่าวประชาสัมพันธ์ล่าสุด</h1>
+        <div id="news-container" class="space-y-4">
+            <p class="text-center text-gray-500">กำลังโหลดข้อมูล...</p>
+        </div>
+    </div>
+
+    <script>
+        async function fetchNews() {
+            try {
+                const res = await fetch('https://rss.app/feeds/v1.1/86OgZH1IGruJ0DEX.json');
+                const data = await res.json();
+                const container = document.getElementById('news-container');
+                container.innerHTML = '';
+
+                data.items.slice(0, 5).forEach(item => {
+                    const card = `
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h2 class="font-bold text-lg text-gray-800">${item.title}</h2>
+                            <p class="text-sm text-gray-500 mt-1">${new Date(item.date_published).toLocaleString('th-TH')}</p>
+                            <a href="${item.url}" target="_blank" class="text-blue-500 mt-2 inline-block">อ่านต่อบน Facebook</a>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            } catch (e) {
+                document.getElementById('news-container').innerHTML = 'ไม่สามารถโหลดข้อมูลได้';
+            }
+        }
+        fetchNews();
+    </script>
+</body>
+</html>
