@@ -123,12 +123,38 @@
         }
 
         .popup-buttons { display: flex; gap: 20px; justify-content: center; }
+        
+        /* แก้ไขปุ่มให้ตรงตามรูปที่ 2 */
         .btn {
-            padding: 12px 45px; font-size: 1.2rem; font-weight: 800; border-radius: 14px;
-            cursor: pointer; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 45px; 
+            font-size: 1.2rem; 
+            font-weight: 800; 
+            border-radius: 12px;
+            cursor: pointer; 
+            transition: all 0.3s ease;
         }
-        .btn:hover { transform: translateY(-3px); border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.1); }
+        
+        /* ปุ่ม YES สีขาว */
+        .btn-yes {
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #ffffff;
+        }
+        .btn-yes:hover {
+            transform: translateY(-3px);
+            background-color: #e6e6e6;
+        }
+
+        /* ปุ่ม NO สีดำขอบขาว */
+        .btn-no {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+        .btn-no:hover {
+            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
     </style>
 </head>
@@ -140,8 +166,8 @@
                 ยิงเว็ปกูดับ<br>ให้จับไข่ไอมอส
             </h1>
             <div class="popup-buttons">
-                <button id="btn-confirm" class="btn rainbow-text">YES</button>
-                <button id="btn-cancel" class="btn rainbow-text">NO</button>
+                <button id="btn-confirm" class="btn btn-yes">YES</button>
+                <button id="btn-cancel" class="btn btn-no">NO</button>
             </div>
         </div>
     </div>
