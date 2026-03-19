@@ -1,26 +1,21 @@
-name: School Notification Bot
+name: Puatify Bot Update
 
 on:
   schedule:
-    - cron: '0 * * * *' # ทำงานทุกต้นชั่วโมง
-  workflow_dispatch: # กดสั่งงานเองด้วยมือได้
+    - cron: '*/30 * * * *' # รันทุกๆ 30 นาที
+  workflow_dispatch: # ปุ่มกดเองด้วยมือ
 
 jobs:
-  build:
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - name: Install dependencies
         run: npm install axios
-
-      - name: Run Bot
+      - name: Send Notification
         env:
           LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
